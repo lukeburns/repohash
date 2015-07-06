@@ -3,12 +3,16 @@ var ghapi = require('ghapi'),
 
 module.exports = repohash
 
-function repohash(login, repo, cb) {
-  ghapi('getRepoCommits', login, repo, { per_page: 1, auth: { bearer: '39cb607a9ca08d077a595377f913c2138a0e484a' } }, function (err, res, commits) {
+function repohash(login, repo, auth, cb) {
+  if (typeof auth === 'function') {
+    cb = auth;
+    auth = undefined;
+  }
+  ghapi('getRepoCommits', login, repo, { auth: auth }, function (err, res, commits) {
     if (err) {
       cb(err);
     } else {
-      ghapi('getRepoGitTree', login, repo, commits[0].sha, { auth: { bearer: '39cb607a9ca08d077a595377f913c2138a0e484a' } }, function (err, res, tree) {
+      ghapi('getRepoGitTree', login, repo, commits[0].sha, { auth: auth }, function (err, res, tree) {
         if (err) {
           cb(err);
         } else {
