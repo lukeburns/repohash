@@ -1,0 +1,17 @@
+{
+  "name": "repohash",
+  "version": "0.0.0",
+  "description": "Get hash of Github repo",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "ghapi": "^0.0.5"
+  },
+  "author": "Luke Burns <lukemburns@gmail.com> (http://lukeburns.com/)",
+  "license": "ISC",
+  "devDependencies": {
+    "tape": "^4.0.0"
+  }
+}
